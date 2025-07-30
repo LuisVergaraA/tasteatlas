@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid2';  // <-- Asegúrate que es Grid2
+import Grid from '@mui/material/Grid2'; 
 import DishTable from './components/DishTable';
 import Student from './components/Student';
 import { type Dish } from './interface/Dish';
