@@ -25,11 +25,11 @@ export default function DishTable({ data }: { data: Dish[] }) {
           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
           <TableCell>{row.position}</TableCell>
-          <TableCell>{row.title}</TableCell>
-          <TableCell>{row.country}</TableCell>
+          <TableCell align="right">{row.title}</TableCell>
+          <TableCell align="right">{row.country}</TableCell>
           <TableCell align="right">{row.rating.toFixed(2)}</TableCell>
-          <TableCell>{row.iconic}</TableCell>
-          <TableCell>{row.ingredients}</TableCell>
+          <TableCell align="right">{row.iconic}</TableCell>
+          <TableCell align="right">{row.ingredients}</TableCell>
         </TableRow>
       ));
     } else {
@@ -48,12 +48,12 @@ export default function DishTable({ data }: { data: Dish[] }) {
       <Table sx={{ minWidth: 1000 }} aria-label="dish table">
         <TableHead>
           <TableRow>
-            <TableCell>Puesto</TableCell>
-            <TableCell>Plato</TableCell>
-            <TableCell>País</TableCell>
-            <TableCell align="right">Rating</TableCell>
-            <TableCell>Restaurantes Icónicos</TableCell>
-            <TableCell>Ingredientes</TableCell>
+            <TableCell align="center">Puesto</TableCell>
+            <TableCell align="center">Plato</TableCell>
+            <TableCell align="center">País</TableCell>
+            <TableCell align="center">Rating</TableCell>
+            <TableCell align="center">Restaurantes Icónicos</TableCell>
+            <TableCell align="center">Ingredientes</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{getRows()}</TableBody>
