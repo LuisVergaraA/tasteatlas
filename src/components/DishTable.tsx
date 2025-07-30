@@ -10,55 +10,55 @@ import Paper from '@mui/material/Paper';
 
 import { type Dish } from '../interface/Dish';
 
-export default function DishTable( { data } : { data: Dish[] } ) {
+export default function DishTable({ data }: { data: Dish[] }) {
+  const [rows, setRows] = useState<Dish[]>([]);
 
-  let [rows, setRows] = useState(Array<Dish>)
+  useEffect(() => {
+    setRows(data);
+  }, [data]);
 
-  let getRows = () => {
+  const getRows = () => {
     if (rows.length) {
-      return (
-        rows.slice(0,10).map((row) => (
-          <TableRow
-            key={row.position}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              {row.position}
-            </TableCell>
-            <TableCell align="right">{row.title} ({row.subtitle})</TableCell>
-            
-            {/* PENDIENTE: Valores a renderizar en cada celda  */}
-            
-          </TableRow>
-        ))
-      )
+      return rows.slice(0, 10).map((row) => (
+        <TableRow
+          key={row.position}
+          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+        >
+          <TableCell>{row.position}</TableCell>
+          <TableCell>{row.title}</TableCell>
+          <TableCell>{row.country}</TableCell>
+          <TableCell align="right">{row.rating.toFixed(2)}</TableCell>
+          <TableCell>{row.iconic}</TableCell>
+          <TableCell>{row.ingredients}</TableCell>
+        </TableRow>
+      ));
     } else {
-      return <TableRow><TableCell>No data</TableCell></TableRow>
+      return (
+        <TableRow>
+          <TableCell colSpan={7} align="center">
+            No data
+          </TableCell>
+        </TableRow>
+      );
     }
-      
-  }
-
-  useEffect( ()=> {
-    setRows(data)
-  }, [data])
-  
+  };
 
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table sx={{ minWidth: 1000 }} aria-label="dish table">
         <TableHead>
           <TableRow>
             <TableCell>Puesto</TableCell>
-            <TableCell align='center'>Plato</TableCell>
-            
-            {/* PENDIENTE: Cabeceras de las columnas  */}
-
+            <TableCell>Plato</TableCell>
+            <TableCell>País</TableCell>
+            <TableCell align="right">Rating</TableCell>
+            <TableCell>Restaurantes Icónicos</TableCell>
+            <TableCell>Ingredientes</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {getRows()}
-        </TableBody>
+        <TableBody>{getRows()}</TableBody>
       </Table>
     </TableContainer>
   );
 }
+
